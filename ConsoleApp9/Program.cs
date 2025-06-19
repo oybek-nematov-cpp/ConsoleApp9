@@ -1,68 +1,49 @@
 ﻿using System;
 
-public class Person
+public class PhotoBook
 {
-    public string Name { get; set; }
+    private int numPages;
 
-    public Person(string name)
+    public PhotoBook()
     {
-        Name = name;
+        numPages = 16;
     }
 
-    public override string ToString()
+   
+    public PhotoBook(int pages)
     {
-        return $"Name: {Name}";
+        numPages = pages;
+    }
+
+  
+    public int GetNumberPages()
+    {
+        return numPages;
     }
 }
 
-public class Student : Person
+public class BigPhotoBook : PhotoBook
 {
-    public Student(string name) : base(name)
+    public BigPhotoBook() : base(64)
     {
-    }
-
-    public void Study()
-    {
-        Console.WriteLine("The student is studying");
-    }
-}
-
-public class Teacher : Person
-{
-    public Teacher(string name) : base(name)
-    {
-    }
-
-    public void Explain()
-    {
-        Console.WriteLine("The teacher is explaining");
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        Person[] people = new Person[3];
-
-        Console.Write("1-talabaning ismini kiriting: ");
-        string name1 = Console.ReadLine();
-        people[0] = new Student(name1);
-
-        Console.Write("2-talabaning ismini kiriting: ");
-        string name2 = Console.ReadLine();
-        people[1] = new Student(name2);
-
-        Console.Write("O'qituvchining ismini kiriting: ");
-        string name3 = Console.ReadLine();
-        people[2] = new Teacher(name3);
-
-        Console.WriteLine();
-
        
-        ((Teacher)people[2]).Explain();
+    }
+}
 
-        ((Student)people[0]).Study();
-        ((Student)people[1]).Study();
+
+public class PhotoBookTest
+{
+    public static void Main(string[] args)
+    {
+      
+        PhotoBook defaultBook = new PhotoBook();
+        Console.WriteLine(defaultBook.GetNumberPages()); 
+
+        PhotoBook customBook = new PhotoBook(24);
+        Console.WriteLine(customBook.GetNumberPages()); 
+
+     
+        BigPhotoBook bigBook = new BigPhotoBook();
+        Console.WriteLine(bigBook.GetNumberPages()); 
     }
 }
